@@ -1,3 +1,4 @@
+import 'package:despesasmod/app/auth/auth_model.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
@@ -7,12 +8,10 @@ class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
   @observable
-  String email = "0@";
-  @observable
-  String password = "0";
+  AuthModel auth = new AuthModel(email: '0@', password: '0');
 
   bool validateForm() {
-    if (email == "0@" || password == "0") {
+    if (auth.email == "0@" || auth.password == "0") {
       return false;
     } else {
       return validateEmail() == null && validatePassword() == null
@@ -22,10 +21,10 @@ abstract class _LoginControllerBase with Store {
   }
 
   String validateEmail() {
-    if (email == null || email.isEmpty) {
+    if (auth.email == null || auth.email.isEmpty) {
       return "Preenchimento Obrigatório.";
     }
-    if (!email.contains('@') && email.length > 0) {
+    if (!auth.email.contains('@') && auth.email.length > 0) {
       return "Digite um Email Válido";
     }
 
@@ -33,17 +32,11 @@ abstract class _LoginControllerBase with Store {
   }
 
   String validatePassword() {
-    if (password == null || password.isEmpty) {
+    if (auth.password == null || auth.password.isEmpty) {
       return "Preenchimento Obrigatório.";
     }
     return null;
   }
-
-  @action
-  changeEmail(String newValue) => email = newValue;
-
-  @action
-  changePassword(String newValue) => password = newValue;
 
   login() {
     print('login');

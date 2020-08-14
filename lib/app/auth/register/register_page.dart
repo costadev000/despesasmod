@@ -1,5 +1,7 @@
 import 'package:despesasmod/app/auth/components/textField.dart';
+import 'package:despesasmod/app/auth/login/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'register_controller.dart';
 
@@ -36,7 +38,89 @@ class _RegisterPageState
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 10, bottom: 10),
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Observer(
+                      builder: (_) {
+                        return textField(
+                            obscure: false,
+                            onChanged: controller.auth.changeName,
+                            errorText: controller.validateName,
+                            hint: 'Nome');
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Observer(
+                      builder: (_) {
+                        return textField(
+                            obscure: false,
+                            onChanged: controller.auth.changeEmail,
+                            errorText: controller.validateEmail,
+                            hint: 'Email');
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Observer(
+                      builder: (_) {
+                        return textField(
+                            obscure: false,
+                            onChanged: controller.confirmEmail,
+                            errorText: controller.validateEmailConf,
+                            hint: 'Confirmar Email');
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Observer(
+                      builder: (_) {
+                        return textField(
+                            obscure: true,
+                            onChanged: controller.auth.changePassword,
+                            errorText: controller.validatePassword,
+                            hint: 'Senha');
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Observer(
+                      builder: (_) {
+                        return textField(
+                            obscure: true,
+                            onChanged: controller.confirmPassword,
+                            errorText: controller.validatePassConf,
+                            hint: 'Confirmar Senha');
+                      },
+                    ),
+                  ),
+                  Observer(
+                    builder: (_) {
+                      return RaisedButton(
+                        onPressed: controller.validateForm()
+                            ? controller.register
+                            : null,
+                        elevation: 5,
+                        child: Text(
+                          'Entrar',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
             )
           ],
         ),

@@ -22,6 +22,10 @@ class AppTheme {
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
+          errorStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: AppColors.primary,

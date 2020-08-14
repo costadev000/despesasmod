@@ -53,7 +53,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                       builder: (_) {
                         return textField(
                             obscure: false,
-                            onChanged: controller.changeEmail,
+                            onChanged: controller.auth.changeEmail,
                             errorText: controller.validateEmail,
                             hint: 'Email');
                       },
@@ -66,7 +66,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         return textField(
                           obscure: true,
                           hint: 'Senha',
-                          onChanged: controller.changePassword,
+                          onChanged: controller.auth.changePassword,
                           errorText: controller.validatePassword,
                         );
                       },
